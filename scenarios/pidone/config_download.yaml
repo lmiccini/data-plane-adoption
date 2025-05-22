@@ -50,7 +50,6 @@ parameter_defaults:
   CloudName: overcloud.example.com
   CloudNameInternal: overcloud.internalapi.example.com
   CloudNameStorage: overcloud.storage.example.com
-  CloudNameStorageManagement: overcloud.storagemgmt.example.com
   CloudNameCtlplane: overcloud.ctlplane.example.com
   CloudDomain: example.com
   NetworkConfigWithAnsible: false
