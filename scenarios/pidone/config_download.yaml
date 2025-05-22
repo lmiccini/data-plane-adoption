@@ -6,11 +6,9 @@ resource_registry:
   OS::TripleO::OVNMacAddressPort: OS::Heat::None
   OS::TripleO::ComputeInstanceHA::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
   OS::TripleO::ComputeInstanceHA::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ComputeInstanceHA::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage_mgmt.yaml
   OS::TripleO::ComputeInstanceHA::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
   OS::TripleO::Controller::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
   OS::TripleO::Controller::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::Controller::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage_mgmt.yaml
   OS::TripleO::Controller::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
   OS::TripleO::Controller::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
   OS::TripleO::Services::OsloMessagingRpc: /usr/share/openstack-tripleo-heat-templates/deployment/rabbitmq/rabbitmq-messaging-rpc-pacemaker-puppet.yaml

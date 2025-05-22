@@ -11,18 +11,6 @@
       ip_subnet: '172.18.0.0/24'
       allocation_pools: [{'start': '172.18.0.120', 'end': '172.18.0.250'}]
 
-- name: StorageMgmt
-  mtu: 1500
-  vip: true
-  name_lower: storage_mgmt
-  dns_domain: storagemgmt.{{ cloud_domain }}.
-  service_net_map_replace: storage_mgmt
-  subnets:
-    storage_mgmt_subnet:
-      vlan: 23
-      ip_subnet: '172.20.0.0/24'
-      allocation_pools: [{'start': '172.20.0.120', 'end': '172.20.0.250'}]
-
 - name: InternalApi
   mtu: 1500
   vip: true
