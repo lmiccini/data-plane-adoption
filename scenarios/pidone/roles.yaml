@@ -18,8 +18,6 @@
       subnet: internal_api_subnet
     Storage:
       subnet: storage_subnet
-    StorageMgmt:
-      subnet: storage_mgmt_subnet
     Tenant:
       subnet: tenant_subnet
     External:
