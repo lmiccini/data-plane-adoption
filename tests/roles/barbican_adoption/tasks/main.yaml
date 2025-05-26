@@ -41,7 +41,7 @@
     {{ shell_header }}
     {{ oc_header }}
     alias openstack="oc exec -t openstackclient -- openstack"
-    secret_id=`${BASH_ALIASES[openstack]} secret list | grep testSecret | cut -d'|' -f 2 | xargs`
+    secret_id=`${BASH_ALIASES[openstack]} secret list | grep testSecret | head -1 |cut -d'|' -f 2 | xargs`
     secret_payload=`${BASH_ALIASES[openstack]} secret get $secret_id --payload -f value`
     if [ "$secret_payload" != "TestPayload" ]
     then
