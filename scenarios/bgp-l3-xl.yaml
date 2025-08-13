@@ -1,0 +1,81 @@
+---
+undercloud:
+  config:
+    - section: DEFAULT
+      option: undercloud_hostname
+      value: undercloud.example.com
+    - section: DEFAULT
+      option: undercloud_timezone
+      value: UTC
+    - section: DEFAULT
+      option: undercloud_debug
+      value: true
+    - section: DEFAULT
+      option: container_cli
+      value: podman
+    - section: DEFAULT
+      option: undercloud_enable_selinux
+      value: false
+    - section: DEFAULT
+      option: generate_service_certificate
+      value: false
+  undercloud_parameters_override: "bgp-l3-xl/hieradata_overrides_undercloud.yaml"
+  undercloud_parameters_defaults: "bgp-l3-xl/undercloud_parameter_defaults.yaml"
+  ctlplane_vip: 192.168.122.98
+cloud_domain: "example.com"
+hostname_groups_map:
+  # map ansible groups in the inventory to role hostname format for
+  # 17.1 deployment
+  osp-r0-computes: "overcloud-computeiha"
+  osp-r1-computes: "overcloud-computeiha"
+  osp-r2-computes: "overcloud-computeiha"
+  osp-r0-controllers: "overcloud-controller"
+  osp-r1-controllers: "overcloud-controller"
+  osp-r2-controllers: "overcloud-controller"
+roles_groups_map:
+  # map ansible groups to tripleo Role names
+  osp-r0-computes: "ComputeInstanceHA"
+  osp-r1-computes: "ComputeInstanceHA"
+  osp-r2-computes: "ComputeInstanceHA"
+  osp-r0-controllers: "Controller"
+  osp-r1-controllers: "Controller"
+  osp-r2-controllers: "Controller"
+stacks:
+  - stackname: "overcloud"
+    args:
+      - "--override-ansible-cfg /home/zuul/ansible_config.cfg"
+      - "--templates /usr/share/openstack-tripleo-heat-templates"
+      - "--libvirt-type qemu"
+      - "--timeout 90"
+      - "--overcloud-ssh-user zuul"
+      - "--deployed-server"
+      - "--validation-warnings-fatal"
+      - "--disable-validations"
+      - "--heat-type pod"
+      - "--disable-protected-resource-types"
+    vars:
+      - "/usr/share/openstack-tripleo-heat-templates/environments/docker-ha.yaml"
+      - "/usr/share/openstack-tripleo-heat-templates/environments/podman.yaml"
+      - "/usr/share/openstack-tripleo-heat-templates/environments/low-memory-usage.yaml"
+      - "/usr/share/openstack-tripleo-heat-templates/environments/debug.yaml"
+      - "/usr/share/openstack-tripleo-heat-templates/environments/services/barbican.yaml"
+      - "/usr/share/openstack-tripleo-heat-templates/environments/barbican-backend-simple-crypto.yaml"
+      - "/home/zuul/fencing.yaml"
+    network_data_file: "bgp-l3-xl/network_data.yaml.j2"
+    vips_data_file: "bgp-l3-xl/vips_data.yaml"
+    roles_file: "bgp-l3-xl/roles.yaml"
+    config_download_file: "bgp-l3-xl/config_download.yaml"
+    stack_nodes:
+      - osp-r0-computes
+      - osp-r1-computes
+      - osp-r2-computes
+      - osp-r0-controllers
+      - osp-r1-controllers
+      - osp-r2-controllers
+    pre_oc_run:
+      - name: Deploy BGP fabric
+        type: playbook
+        source: "bgp/prepare-bgp-spines-leaves.yaml"
+        extra_vars:
+          stack_index: 0
+          foo: bar
