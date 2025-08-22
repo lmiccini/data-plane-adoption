@@ -53,7 +53,7 @@ stacks:
       - "--disable-validations"
       - "--heat-type pod"
       - "--disable-protected-resource-types"
-    vars:
+   vars:
       - "/usr/share/openstack-tripleo-heat-templates/environments/docker-ha.yaml"
       - "/usr/share/openstack-tripleo-heat-templates/environments/podman.yaml"
       - "/usr/share/openstack-tripleo-heat-templates/environments/low-memory-usage.yaml"
@@ -61,6 +61,9 @@ stacks:
       - "/usr/share/openstack-tripleo-heat-templates/environments/services/barbican.yaml"
       - "/usr/share/openstack-tripleo-heat-templates/environments/barbican-backend-simple-crypto.yaml"
       - "/usr/share/openstack-tripleo-heat-templates/environments/services/frr.yaml"
+      - "/home/zuul/data-plane-adoption/scenarios/bgp-l3-xl/extraconfigpre_env.yaml"
+      - "/home/zuul/data-plane-adoption/scenarios/bgp-l3-xl/extraconfigpost_env.yaml"
+      - "/home/zuul/data-plane-adoption/scenarios/bgp-l3-xl/network-environment.yaml"
     network_data_file: "bgp-l3-xl/network_data.yaml.j2"
     vips_data_file: "bgp-l3-xl/vips_data.yaml"
     roles_file: "bgp-l3-xl/roles.yaml"
