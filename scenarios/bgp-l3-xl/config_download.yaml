@@ -75,7 +75,7 @@ parameter_defaults:
   Debug: true
   ConfigDebug: true
   CephAnsiblePlaybookVerbosity: 2
-  CloudDomain: {{ ansible_domain }}
+  CloudDomain: "{{ ansible_domain }}"
   CloudName: "overcloud.{{ ansible_domain }}"
   CloudNameCtlplane: "overcloud.ctlplane.{{ ansible_domain }}"
   CloudNameMainNetwork: "overcloud.main.{{ ansible_domain }}"
