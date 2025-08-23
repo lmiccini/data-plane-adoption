@@ -15,8 +15,8 @@
   networks:
     LeftNetwork:
       subnet: left_network_r1
-    RightNetwork1:
-      subnet: right_network1_sub
+    RightNetwork:
+      subnet: right_network_r1
     MainNetwork:
       subnet: main_network_r1
     MainNetworkIPv6:
@@ -174,8 +174,8 @@
   networks:
     LeftNetwork:
       subnet: left_network_r2
-    RightNetwork2:
-      subnet: right_network2_sub
+    RightNetwork:
+      subnet: right_network_r2
     MainNetwork:
       subnet: main_network_r2
     MainNetworkIPv6:
@@ -332,8 +332,8 @@
   networks:
     LeftNetwork:
       subnet: left_network_r3
-    RightNetwor3:
-      subnet: right_network3_sub
+    RightNetwork:
+      subnet: right_network_r3
     MainNetwork:
       subnet: main_network_r3
     MainNetworkIPv6:
@@ -495,8 +495,8 @@
   networks:
     LeftNetwork:
       subnet: left_network_r1
-    RightNetwork1:
-      subnet: right_network1_sub
+    RightNetwork:
+      subnet: right_network_r1
     MainNetwork:
       subnet: main_network_r1
     MainNetworkIPv6:
@@ -567,8 +567,8 @@
   networks:
     LeftNetwork:
       subnet: left_network_r2
-    RightNetwor2:
-      subnet: right_network2_sub
+    RightNetwor:
+      subnet: right_network_r2
     MainNetwork:
       subnet: main_network_r2
     MainNetworkIPv6:
@@ -639,8 +639,8 @@
   networks:
     LeftNetwork:
       subnet: left_network_r3
-    RightNetwork3:
-      subnet: right_network3_sub
+    RightNetwork:
+      subnet: right_network_r3
     MainNetwork:
       subnet: main_network_r3
     MainNetworkIPv6:

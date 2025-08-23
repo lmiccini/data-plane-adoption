@@ -31,7 +31,7 @@ network_config:
   use_dhcp: false
   addresses:
   - ip_netmask:
-      {{ lookup('vars', 'right_network1_ip') }}/30
+      {{ lookup('vars', 'right_network_ip') }}/30
 - type: interface
   name: lo
   use_dhcp: false
