@@ -26,12 +26,12 @@ cloud_domain: "example.com"
 hostname_groups_map:
   # map ansible groups in the inventory to role hostname format for
   # 17.1 deployment
-  osp-r0-computes: "r0-compute"
-  osp-r1-computes: "r1-compute"
-  osp-r2-computes: "r2-compute"
-  osp-r0-controllers: "ctrl-0"
-  osp-r1-controllers: "ctrl-1"
-  osp-r2-controllers: "ctrl-2"
+  osp-r0-computes: "osp-r0-compute"
+  osp-r1-computes: "osp-r1-compute"
+  osp-r2-computes: "osp-r2-compute"
+  osp-r0-controllers: "osp-r0-controller-0"
+  osp-r1-controllers: "osp-r1-controller-0"
+  osp-r2-controllers: "osp-r2-controller-0"
 roles_groups_map:
   # map ansible groups to tripleo Role names
   osp-r0-computes: "ComputeRack0"

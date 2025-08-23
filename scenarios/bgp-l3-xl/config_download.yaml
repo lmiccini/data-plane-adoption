@@ -201,17 +201,17 @@ parameter_defaults:
   BgpvpnServiceProvider: 'BGPVPN:OVN:networking_bgpvpn.neutron.services.service_drivers.ovn.ovn.OvnBGPVPNDriver:default'
 
   ControllerRack0SchedulerHints:
-    'capabilities:node': 'ctrl-0-%index%'
+    'capabilities:node': 'osp-r0-controller-%index%'
   ControllerRack1SchedulerHints:
-    'capabilities:node': 'ctrl-1-%index%'
+    'capabilities:node': 'osp-r1-controller-%index%'
   ControllerRack2SchedulerHints:
-    'capabilities:node': 'ctrl-1-%index%'
+    'capabilities:node': 'osp-r2-controller-%index%'
   ComputeRack0SchedulerHints:
-    'capabilities:node': 'r0-compute-%index%'
+    'capabilities:node': 'osp-r0-compute-%index%'
   ComputeRack1SchedulerHints:
-    'capabilities:node': 'r1-compute-%index%'
+    'capabilities:node': 'osp-r1-compute-%index%'
   ComputeRack2SchedulerHints:
-    'capabilities:node': 'r2-compute-%index%'
+    'capabilities:node': 'osp-r2-compute-%index%'
 
   ExtraConfig:
     neutron::config::plugin_ml2_config:

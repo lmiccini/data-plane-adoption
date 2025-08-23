@@ -26,7 +26,7 @@
     External:
       subnet: external_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: 'ctrl-0-%index%'
+  HostnameFormatDefault: 'osp-r0-controller-%index%'
   ServicesDefault:
     - OS::TripleO::Services::Aide
     - OS::TripleO::Services::AodhApi
@@ -185,7 +185,7 @@
     External:
       subnet: external_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: 'ctrl-1-%index%'
+  HostnameFormatDefault: 'osp-r1-controller-%index%'
   ServicesDefault:
     - OS::TripleO::Services::Aide
     - OS::TripleO::Services::AodhApi
@@ -343,7 +343,7 @@
     External:
       subnet: external_subnet
   default_route_networks: ['External']
-  HostnameFormatDefault: 'ctrl-2-%index%'
+  HostnameFormatDefault: 'osp-r2-controller-%index%'
   ServicesDefault:
     - OS::TripleO::Services::Aide
     - OS::TripleO::Services::AodhApi
@@ -501,7 +501,7 @@
       subnet: main_network_r0
     MainNetworkIPv6:
       subnet: main_network_ipv6_r0
-  HostnameFormatDefault: 'r0-compute-%index%'
+  HostnameFormatDefault: 'osp-r0-compute-%index%'
   RoleParametersDefault:
     TunedProfileName: "virtual-host"
   disable_upgrade_deployment: True
@@ -573,7 +573,7 @@
       subnet: main_network_r1
     MainNetworkIPv6:
       subnet: main_network_ipv6_r0
-  HostnameFormatDefault: 'r1-compute-%index%'
+  HostnameFormatDefault: 'osp-r1-compute-%index%'
   RoleParametersDefault:
     TunedProfileName: "virtual-host"
   disable_upgrade_deployment: True
@@ -645,7 +645,7 @@
       subnet: main_network_r2
     MainNetworkIPv6:
       subnet: main_network_ipv6_r0
-  HostnameFormatDefault: 'r2-compute-%index%'
+  HostnameFormatDefault: 'osp-r2-compute-%index%'
   RoleParametersDefault:
     TunedProfileName: "virtual-host"
   disable_upgrade_deployment: True
