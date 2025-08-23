@@ -80,3 +80,4 @@ stacks:
         extra_vars:
           stack_index: 0
           num_racks: 3
+          cifmw_repo_setup_rhos_release_rpm: https://url.corp.redhat.com/6501b8d
