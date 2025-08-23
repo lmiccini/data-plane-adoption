@@ -79,4 +79,4 @@ stacks:
         source: "bgp/prepare-bgp-spines-leaves.yaml"
         extra_vars:
           stack_index: 0
-          foo: bar
+          num_racks: 3
