@@ -3,15 +3,19 @@ resource_registry:
   OS::TripleO::DeployedServer::ControlPlanePort: /usr/share/openstack-tripleo-heat-templates/deployed-server/deployed-neutron-port.yaml
   OS::TripleO::OVNMacAddressNetwork: OS::Heat::None
   OS::TripleO::OVNMacAddressPort: OS::Heat::None
+  OS::TripleO::ComputeRack0::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
+  OS::TripleO::ComputeRack0::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
+  OS::TripleO::ComputeRack0::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
   OS::TripleO::ComputeRack1::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
   OS::TripleO::ComputeRack1::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
   OS::TripleO::ComputeRack1::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
   OS::TripleO::ComputeRack2::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
   OS::TripleO::ComputeRack2::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
   OS::TripleO::ComputeRack2::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ComputeRack3::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ComputeRack3::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ComputeRack3::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
+  OS::TripleO::ControllerRack0::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
+  OS::TripleO::ControllerRack0::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
+  OS::TripleO::ControllerRack0::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
+  OS::TripleO::ControllerRack0::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
   OS::TripleO::ControllerRack1::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
   OS::TripleO::ControllerRack1::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
   OS::TripleO::ControllerRack1::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
@@ -20,10 +24,6 @@ resource_registry:
   OS::TripleO::ControllerRack2::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
   OS::TripleO::ControllerRack2::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
   OS::TripleO::ControllerRack2::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ControllerRack3::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
-  OS::TripleO::ControllerRack3::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ControllerRack3::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ControllerRack3::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
   OS::TripleO::Services::OsloMessagingRpc: /usr/share/openstack-tripleo-heat-templates/deployment/rabbitmq/rabbitmq-messaging-rpc-pacemaker-puppet.yaml
   OS::TripleO::Services::OsloMessagingNotify: /usr/share/openstack-tripleo-heat-templates/deployment/rabbitmq/rabbitmq-messaging-notify-shared-puppet.yaml
   OS::TripleO::Services::HAproxy: /usr/share/openstack-tripleo-heat-templates/deployment/haproxy/haproxy-pacemaker-puppet.yaml
@@ -41,34 +41,34 @@ resource_registry:
   OS::TripleO::Services::HeatEngine: /usr/share/openstack-tripleo-heat-templates/deployment/heat/heat-engine-container-puppet.yaml
 
   # workarounds
+  OS::TripleO::ControllerRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
   OS::TripleO::ControllerRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
   OS::TripleO::ControllerRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ControllerRack3ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  OS::TripleO::ComputeRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
   OS::TripleO::ComputeRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
   OS::TripleO::ComputeRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ComputeRack3ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
 
   OS::TripleO::NodeExtraConfigPost: /home/stack/tht/extraconfigpost_template.yaml
 
 parameter_defaults:
+  OvercloudControllerRack0Flavor: control0
   OvercloudControllerRack1Flavor: control1
   OvercloudControllerRack2Flavor: control2
-  OvercloudControllerRack3Flavor: control3
+  ControllerRack0Count: 1
   ControllerRack1Count: 1
   ControllerRack2Count: 1
-  ControllerRack3Count: 1
+  OvercloudComputeRack0Flavor: compute0
   OvercloudComputeRack1Flavor: compute1
   OvercloudComputeRack2Flavor: compute2
-  OvercloudComputeRack3Flavor: compute3
+  ComputeRack0Count: 2
   ComputeRack1Count: 2
   ComputeRack2Count: 2
-  ComputeRack3Count: 2
+  ControllerRack0ControlPlaneSubnet: r0
   ControllerRack1ControlPlaneSubnet: r1
   ControllerRack2ControlPlaneSubnet: r2
-  ControllerRack3ControlPlaneSubnet: r3
+  ComputeRack0ControlPlaneSubnet: r0
   ComputeRack1ControlPlaneSubnet: r1
   ComputeRack2ControlPlaneSubnet: r2
-  ComputeRack3ControlPlaneSubnet: r3
 
   # extraconfigpre
   ContainerHealthcheckDisabled: true
@@ -101,6 +101,22 @@ parameter_defaults:
   FrrBgpL2VpnEbgpMultihop: 10
   FrrBgpL2VpnPeers: ['5.1.1.1']
 
+  ControllerRack0ExtraGroupVars:
+    tripleo_frr_bgp_neighbor_password: f00barZ
+    tripleo_frr_bfd_detect_multiplier: 10
+    tripleo_frr_bfd_transmit_interval: 500
+    tripleo_frr_bfd_receive_interval: 500
+    tripleo_frr_zebra_graceful_restart_time: 30
+    tripleo_frr_conf_custom_router_bgp: |
+      bgp graceful-restart
+    tripleo_frr_conf_custom_globals: |
+      debug bfd peer
+      debug bfd network
+      debug bfd zebra
+      debug bgp graceful-restart
+      debug bgp neighbor-events
+      debug bgp updates
+      debug bgp update-groups
   ControllerRack1ExtraGroupVars:
     tripleo_frr_bgp_neighbor_password: f00barZ
     tripleo_frr_bfd_detect_multiplier: 10
@@ -133,7 +149,7 @@ parameter_defaults:
       debug bgp neighbor-events
       debug bgp updates
       debug bgp update-groups
-  ControllerRack3ExtraGroupVars:
+  ComputeRack0ExtraGroupVars:
     tripleo_frr_bgp_neighbor_password: f00barZ
     tripleo_frr_bfd_detect_multiplier: 10
     tripleo_frr_bfd_transmit_interval: 500
@@ -181,37 +197,21 @@ parameter_defaults:
       debug bgp neighbor-events
       debug bgp updates
       debug bgp update-groups
-  ComputeRack3ExtraGroupVars:
-    tripleo_frr_bgp_neighbor_password: f00barZ
-    tripleo_frr_bfd_detect_multiplier: 10
-    tripleo_frr_bfd_transmit_interval: 500
-    tripleo_frr_bfd_receive_interval: 500
-    tripleo_frr_zebra_graceful_restart_time: 30
-    tripleo_frr_conf_custom_router_bgp: |
-      bgp graceful-restart
-    tripleo_frr_conf_custom_globals: |
-      debug bfd peer
-      debug bfd network
-      debug bfd zebra
-      debug bgp graceful-restart
-      debug bgp neighbor-events
-      debug bgp updates
-      debug bgp update-groups
 
   BgpvpnServiceProvider: 'BGPVPN:OVN:networking_bgpvpn.neutron.services.service_drivers.ovn.ovn.OvnBGPVPNDriver:default'
 
+  ControllerRack0SchedulerHints:
+    'capabilities:node': 'ctrl-0-%index%'
   ControllerRack1SchedulerHints:
     'capabilities:node': 'ctrl-1-%index%'
   ControllerRack2SchedulerHints:
-    'capabilities:node': 'ctrl-2-%index%'
-  ControllerRack3SchedulerHints:
-    'capabilities:node': 'ctrl-3-%index%'
+    'capabilities:node': 'ctrl-1-%index%'
+  ComputeRack0SchedulerHints:
+    'capabilities:node': 'r0-compute-%index%'
   ComputeRack1SchedulerHints:
-    'capabilities:node': 'cmp-1-%index%'
+    'capabilities:node': 'r1-compute-%index%'
   ComputeRack2SchedulerHints:
-    'capabilities:node': 'cmp-2-%index%'
-  ComputeRack3SchedulerHints:
-    'capabilities:node': 'cmp-3-%index%'
+    'capabilities:node': 'r2-compute-%index%'
 
   ExtraConfig:
     neutron::config::plugin_ml2_config:

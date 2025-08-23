@@ -1,9 +1,60 @@
 parameter_defaults:
-  #workaround FIXME
-  #FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
+
+  ControllerRack0IPs:
+    left_network:
+    - 100.64.0.30
+    right_network:
+    - 100.65.0.30
+    main_network:
+    - 99.99.0.29/24
+  ControllerRack1IPs:
+    left_network:
+    - 100.64.1.30
+    right_network:
+    - 100.65.1.30
+    main_network:
+    - 99.99.1.30/24
+  ControllerRack2IPs:
+    left_network:
+    - 100.64.2.30
+    right_network:
+    - 100.65.2.30
+    main_network:
+    - 99.99.2.29/24
+  ComputeRack0IPs:
+    left_network:
+    - 100.64.0.2
+    - 100.64.0.6
+    right_network:
+    - 100.65.0.2
+    - 100.65.0.6
+    main_network:
+    - 99.99.0.2/24
+    - 99.99.0.6/24
+  ComputeRack1IPs:
+    left_network:
+    - 100.64.1.2
+    - 100.64.1.6
+    right_network:
+    - 100.65.1.2
+    - 100.65.1.6
+    main_network:
+    - 99.99.1.2/24
+    - 99.99.1.6/24
+  ComputeRack2IPs:
+    left_network:
+    - 100.64.2.2
+    - 100.64.2.6
+    right_network:
+    - 100.65.2.2
+    - 100.65.2.6
+    main_network:
+    - 99.99.2.2/24
+    - 99.99.2.6/24
+
 
   # this overrides the default value openstacklocal
-  NeutronDnsDomain: redhat.local
+  NeutronDnsDomain: example.com
 
   # overriding default values in order to not collide with provider subnet
   OctaviaControlSubnetCidr: 172.25.0.0/16
@@ -13,12 +64,25 @@ parameter_defaults:
 
   OctaviaLoadBalancerTopology: ACTIVE_STANDBY
 
-  ControlPlaneSubnet: main_network_r1
+  ControlPlaneSubnet: main_network_r0
   VipSubnetMap:
-    main_network: main_network_r1
+    main_network: main_network_r0
   # provider1 represents a flat network
   # provider2 represents a network with vlans
   NeutronFlatNetworks: provider1
+  ControllerRack0Parameters:
+    NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
+    ControlPlaneSubnet: main_network_r0
+    OVNCMSOptions: "enable-chassis-as-gw"
+    FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
+    FrrOvnBgpAgentExposeTenantNetworks: True
+    ExtraSysctlSettings:
+      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+        value: 0
+      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+        value: 0
+      net.ipv6.conf.br-ex.router_solicitations:
+        value: 0
   ControllerRack1Parameters:
     NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
     ControlPlaneSubnet: main_network_r1
@@ -45,12 +109,9 @@ parameter_defaults:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
-  ControllerRack3Parameters:
+  ComputeRack0Parameters:
     NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
-    ControlPlaneSubnet: main_network_r3
-    OVNCMSOptions: "enable-chassis-as-gw"
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
-    FrrOvnBgpAgentExposeTenantNetworks: True
     ExtraSysctlSettings:
       net.ipv6.conf.enp2s0.accept_ra_defrtr:
         value: 0
@@ -78,22 +139,12 @@ parameter_defaults:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
-  ComputeRack3Parameters:
-    NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
-    FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
-    ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
-        value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
-        value: 0
-      net.ipv6.conf.br-ex.router_solicitations:
-        value: 0
   #NeutronEnableDVR: 'false'
   #NeutronNetworkType: 'geneve'
   #NeutronTunnelTypes: 'geneve'
   NeutronExternalNetworkBridge: ''
   NeutronNetworkVLANRanges: 'provider2:1:1000'
-  DnsServers: ['172.30.4.2', '10.47.242.10']
+  DnsServers: ['192.168.122.1', '192.168.125.1']
   NtpPool: clock.corp.redhat.com
   EnableVLANTransparency: True
   NeutronEnableIgmpSnooping: True
