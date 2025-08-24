@@ -73,11 +73,11 @@ stacks:
       - osp-r0-controllers
       - osp-r1-controllers
       - osp-r2-controllers
-    pre_oc_run:
-      - name: Deploy BGP fabric
-        type: playbook
-        source: "bgp/prepare-bgp-spines-leaves.yaml"
-        extra_vars:
-          stack_index: 0
-          num_racks: 3
-          cifmw_repo_setup_rhos_release_rpm: https://url.corp.redhat.com/6501b8d
+    #pre_oc_run:
+    #  - name: Deploy BGP fabric
+    #    type: playbook
+    #    source: "bgp/prepare-bgp-spines-leaves.yaml"
+    #    extra_vars:
+    #      stack_index: 0
+    #      num_racks: 3
+    #      cifmw_repo_setup_rhos_release_rpm: https://url.corp.redhat.com/6501b8d
