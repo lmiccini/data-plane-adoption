@@ -45,14 +45,14 @@ resource_registry:
   OS::TripleO::Services::HeatEngine: /usr/share/openstack-tripleo-heat-templates/deployment/heat/heat-engine-container-puppet.yaml
 
   # workarounds
-  OS::TripleO::ControllerRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ControllerRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ControllerRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ComputeRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ComputeRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  OS::TripleO::ComputeRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  #OS::TripleO::ControllerRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  #OS::TripleO::ControllerRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  #OS::TripleO::ControllerRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  #OS::TripleO::ComputeRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  #OS::TripleO::ComputeRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
+  #OS::TripleO::ComputeRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
 
-  OS::TripleO::NodeExtraConfigPost: /home/stack/tht/extraconfigpost_template.yaml
+  #OS::TripleO::NodeExtraConfigPost: /home/stack/tht/extraconfigpost_template.yaml
 
 parameter_defaults:
   OvercloudControllerRack0Flavor: control0
