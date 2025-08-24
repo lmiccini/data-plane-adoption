@@ -3,27 +3,31 @@ resource_registry:
   OS::TripleO::DeployedServer::ControlPlanePort: /usr/share/openstack-tripleo-heat-templates/deployed-server/deployed-neutron-port.yaml
   OS::TripleO::OVNMacAddressNetwork: OS::Heat::None
   OS::TripleO::OVNMacAddressPort: OS::Heat::None
-  OS::TripleO::ComputeRack0::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ComputeRack0::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ComputeRack0::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ComputeRack1::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ComputeRack1::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ComputeRack1::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ComputeRack2::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ComputeRack2::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ComputeRack2::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ControllerRack0::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
-  OS::TripleO::ControllerRack0::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ControllerRack0::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ControllerRack0::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ControllerRack1::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
-  OS::TripleO::ControllerRack1::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ControllerRack1::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ControllerRack1::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
-  OS::TripleO::ControllerRack2::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_external.yaml
-  OS::TripleO::ControllerRack2::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_internal_api.yaml
-  OS::TripleO::ControllerRack2::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_storage.yaml
-  OS::TripleO::ControllerRack2::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_tenant.yaml
+
+  OS::TripleO::ComputeRack0::Ports::LeftNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_left_network.yaml
+  OS::TripleO::ComputeRack0::Ports::RightNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_right_network.yaml
+  OS::TripleO::ComputeRack0::Ports::MainNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_main_network.yaml
+
+  OS::TripleO::ComputeRack1::Ports::LeftNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_left_network.yaml
+  OS::TripleO::ComputeRack1::Ports::RightNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_right_network.yaml
+  OS::TripleO::ComputeRack1::Ports::MainNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_main_network.yaml
+
+  OS::TripleO::ComputeRack2::Ports::LeftNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_left_network.yaml
+  OS::TripleO::ComputeRack2::Ports::RightNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_right_network.yaml
+  OS::TripleO::ComputeRack2::Ports::MainNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_main_network.yaml
+
+  OS::TripleO::ControllerRack0::Ports::LeftNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_left_network.yaml
+  OS::TripleO::ControllerRack0::Ports::RightNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_right_network.yaml
+  OS::TripleO::ControllerRack0::Ports::MainNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_main_network.yaml
+
+  OS::TripleO::ControllerRack1::Ports::LeftNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_left_network.yaml
+  OS::TripleO::ControllerRack1::Ports::RightNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_right_network.yaml
+  OS::TripleO::ControllerRack1::Ports::MainNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_main_network.yaml
+
+  OS::TripleO::ControllerRack2::Ports::LeftNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_left_network.yaml
+  OS::TripleO::ControllerRack2::Ports::RightNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_right_network.yaml
+  OS::TripleO::ControllerRack2::Ports::MainNetworkPort: /usr/share/openstack-tripleo-heat-templates/network/ports/deployed_main_network.yaml
+
   OS::TripleO::Services::OsloMessagingRpc: /usr/share/openstack-tripleo-heat-templates/deployment/rabbitmq/rabbitmq-messaging-rpc-pacemaker-puppet.yaml
   OS::TripleO::Services::OsloMessagingNotify: /usr/share/openstack-tripleo-heat-templates/deployment/rabbitmq/rabbitmq-messaging-notify-shared-puppet.yaml
   OS::TripleO::Services::HAproxy: /usr/share/openstack-tripleo-heat-templates/deployment/haproxy/haproxy-pacemaker-puppet.yaml
