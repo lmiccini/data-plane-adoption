@@ -567,7 +567,7 @@
   networks:
     LeftNetwork:
       subnet: left_network_r1
-    RightNetwor:
+    RightNetwork:
       subnet: right_network_r1
     MainNetwork:
       subnet: main_network_r1
