@@ -301,12 +301,12 @@ parameter_defaults:
         ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0003]
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
 
-  CloudDomain: "{{ ansible_domain }}"
-  CloudName: "overcloud.{{ ansible_domain }}"
-  CloudNameCtlplane: "overcloud.ctlplane.{{ ansible_domain }}"
-  CloudNameMainNetwork: "overcloud.main.{{ ansible_domain }}"
-  CloudNameLeftNetwork: "overcloud.left.{{ ansible_domain }}"
-  CloudNameRightNetwork: "overcloud.right.{{ ansible_domain }}"
+  CloudDomain: "example.com"
+  CloudName: "overcloud.example.com"
+  CloudNameCtlplane: "overcloud.ctlplane.example.com"
+  CloudNameMainNetwork: "overcloud.main.example.com"
+  CloudNameLeftNetwork: "overcloud.left.example.com"
+  CloudNameRightNetwork: "overcloud.right.example.com"
 
   CinderLVMLoopDeviceSize: 16384
   FrrBfdEnabled: true
