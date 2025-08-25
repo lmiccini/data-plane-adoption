@@ -1,6 +1,7 @@
 resource_registry:
   # yamllint disable rule:line-length
   OS::TripleO::DeployedServer::ControlPlanePort: /usr/share/openstack-tripleo-heat-templates/deployed-server/deployed-neutron-port.yaml
+
   OS::TripleO::OVNMacAddressNetwork: OS::Heat::None
   OS::TripleO::OVNMacAddressPort: OS::Heat::None
 
@@ -53,29 +54,253 @@ resource_registry:
   OS::TripleO::Services::HeatApiCloudwatch: /usr/share/openstack-tripleo-heat-templates/deployment/heat/heat-api-cloudwatch-disabled-puppet.yaml
   OS::TripleO::Services::HeatEngine: /usr/share/openstack-tripleo-heat-templates/deployment/heat/heat-engine-container-puppet.yaml
 
-  # workarounds
-  #OS::TripleO::ControllerRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  #OS::TripleO::ControllerRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  #OS::TripleO::ControllerRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  #OS::TripleO::ComputeRack0ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  #OS::TripleO::ComputeRack1ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-  #OS::TripleO::ComputeRack2ExtraConfigPre: /home/stack/tht/extraconfigpre_template.yaml
-
-  #OS::TripleO::NodeExtraConfigPost: /home/stack/tht/extraconfigpost_template.yaml
 
 parameter_defaults:
   ControllerRack0Count: 1
+  ControllerRack0HostnameFormat: controllerrack0-%index%
   ControllerRack1Count: 1
+  ControllerRack1HostnameFormat: controllerrack1-%index%
   ControllerRack2Count: 1
+  ControllerRack2HostnameFormat: controllerrack2-%index%
   ComputeRack0Count: 2
+  ComputeRack0HostnameFormat: computerack0-%index%
   ComputeRack1Count: 2
+  ComputeRack1HostnameFormat: computerack1-%index%
   ComputeRack2Count: 2
+  ComputeRack2HostnameFormat: computerack2-%index%
 
-  # extraconfigpre
-  ContainerHealthcheckDisabled: true
-  Debug: true
-  ConfigDebug: true
-  CephAnsiblePlaybookVerbosity: 2
+  HostnameMap:
+    computerack0-0: osp-r0-compute-0
+    computerack0-1: osp-r0-compute-1
+    computerack1-0: osp-r1-compute-0
+    computerack1-1: osp-r1-compute-1
+    computerack2-0: osp-r2-compute-0
+    computerack2-1: osp-r2-compute-1
+    controllerrack0-0: osp-r0-controller-0
+    controllerrack1-0: osp-r1-controller-0
+    controllerrack2-0: osp-r2-controller-0
+
+
+  DeployedServerPortMap:
+    osp-r0-compute-0-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.100
+    osp-r0-compute-1-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.101
+    osp-r1-compute-0-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.110
+    osp-r1-compute-1-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.111
+    osp-r2-compute-0-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.120
+    osp-r2-compute-1-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.121
+    osp-r0-controller-0-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.140
+    osp-r1-controller-0-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.145
+    osp-r2-controller-0-ctlplane:
+      fixed_ips:
+      - ip_address: 192.168.125.148
+
+  NodePortMap:
+    osp-r0-compute-0:
+      ctlplane:
+        ip_address: 192.168.125.100
+        ip_address_uri: 192.168.125.100
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.0.2
+        ip_address_uri: 100.64.0.2
+        ip_subnet: 100.64.0.0/24
+      right_network:
+        ip_address: 100.65.0.2
+        ip_address_uri: 100.65.0.2
+        ip_subnet: 100.65.0.0/24
+      main_network:
+        ip_address: 99.99.0.2
+        ip_address_uri: 99.99.0.2
+        ip_subnet: 99.99.0.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0004
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0004]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r0-compute-1:
+      ctlplane:
+        ip_address: 192.168.125.101
+        ip_address_uri: 192.168.125.101
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.0.6
+        ip_address_uri: 100.64.0.6
+        ip_subnet: 100.64.0.0/24
+      right_network:
+        ip_address: 100.65.0.6
+        ip_address_uri: 100.65.0.6
+        ip_subnet: 100.65.0.0/24
+      main_network:
+        ip_address: 99.99.0.6
+        ip_address_uri: 99.99.0.6
+        ip_subnet: 99.99.0.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0005
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0005]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r1-compute-0:
+      ctlplane:
+        ip_address: 192.168.125.110
+        ip_address_uri: 192.168.125.110
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.1.2
+        ip_address_uri: 100.64.1.2
+        ip_subnet: 100.64.1.0/24
+      right_network:
+        ip_address: 100.65.1.2
+        ip_address_uri: 100.65.1.2
+        ip_subnet: 100.65.1.0/24
+      main_network:
+        ip_address: 99.99.1.2
+        ip_address_uri: 99.99.1.2
+        ip_subnet: 99.99.1.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0006
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0006]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r1-compute-1:
+      ctlplane:
+        ip_address: 192.168.125.111
+        ip_address_uri: 192.168.125.111
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.1.6
+        ip_address_uri: 100.64.1.6
+        ip_subnet: 100.64.1.0/24
+      right_network:
+        ip_address: 100.65.1.6
+        ip_address_uri: 100.65.1.6
+        ip_subnet: 100.65.1.0/24
+      main_network:
+        ip_address: 99.99.1.6
+        ip_address_uri: 99.99.1.6
+        ip_subnet: 99.99.1.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0007
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0007]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r2-compute-0:
+      ctlplane:
+        ip_address: 192.168.125.120
+        ip_address_uri: 192.168.125.120
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.2.2
+        ip_address_uri: 100.64.2.2
+        ip_subnet: 100.64.2.0/24
+      right_network:
+        ip_address: 100.65.2.2
+        ip_address_uri: 100.65.2.2
+        ip_subnet: 100.65.2.0/24
+      main_network:
+        ip_address: 99.99.2.2
+        ip_address_uri: 99.99.2.2
+        ip_subnet: 99.99.2.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0008
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0008]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r2-compute-1:
+      ctlplane:
+        ip_address: 192.168.125.121
+        ip_address_uri: 192.168.125.121
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.2.6
+        ip_address_uri: 100.64.2.6
+        ip_subnet: 100.64.2.0/24
+      right_network:
+        ip_address: 100.65.2.6
+        ip_address_uri: 100.65.2.6
+        ip_subnet: 100.65.2.0/24
+      main_network:
+        ip_address: 99.99.2.6
+        ip_address_uri: 99.99.2.6
+        ip_subnet: 99.99.2.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0009
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0009]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r0-controller-0:
+      ctlplane:
+        ip_address: 192.168.125.140
+        ip_address_uri: 192.168.125.140
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.0.30
+        ip_address_uri: 100.64.0.30
+        ip_subnet: 100.64.0.0/24
+      right_network:
+        ip_address: 100.65.0.30
+        ip_address_uri: 100.65.0.30
+        ip_subnet: 100.65.0.0/24
+      main_network:
+        ip_address: 99.99.0.29
+        ip_address_uri: 99.99.0.29
+        ip_subnet: 99.99.0.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0001
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0001]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r1-controller-0:
+      ctlplane:
+        ip_address: 192.168.125.145
+        ip_address_uri: 192.168.125.145
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.1.30
+        ip_address_uri: 100.64.1.30
+        ip_subnet: 100.64.1.0/24
+      right_network:
+        ip_address: 100.65.1.30
+        ip_address_uri: 100.65.1.30
+        ip_subnet: 100.65.1.0/24
+      main_network:
+        ip_address: 99.99.1.29
+        ip_address_uri: 99.99.1.29
+        ip_subnet: 99.99.1.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0002
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0002]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+    osp-r2-controller-0:
+      ctlplane:
+        ip_address: 192.168.125.148
+        ip_address_uri: 192.168.125.148
+        ip_subnet: 192.168.125.0/24
+      left_network:
+        ip_address: 100.64.2.30
+        ip_address_uri: 100.64.2.30
+        ip_subnet: 100.64.2.0/24
+      right_network:
+        ip_address: 100.65.2.30
+        ip_address_uri: 100.65.2.30
+        ip_subnet: 100.65.2.0/24
+      main_network:
+        ip_address: 99.99.2.29
+        ip_address_uri: 99.99.2.29
+        ip_subnet: 99.99.2.0/24
+      main_network_ipv6:
+        ip_address: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0003
+        ip_address_uri: [f00d:f00d:f00d:f00d:f00d:f00d:f00d:0003]
+        ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
+
   CloudDomain: "{{ ansible_domain }}"
   CloudName: "overcloud.{{ ansible_domain }}"
   CloudNameCtlplane: "overcloud.ctlplane.{{ ansible_domain }}"
@@ -83,11 +308,6 @@ parameter_defaults:
   CloudNameLeftNetwork: "overcloud.left.{{ ansible_domain }}"
   CloudNameRightNetwork: "overcloud.right.{{ ansible_domain }}"
 
-  # Issue 84. in the rhel9 issue doc (vms do not boot)
-  IronicDefaultBootMode: 'bios'
-
-  SkipRhelEnforcement: 'true'
-  TimeZone: UTC
   CinderLVMLoopDeviceSize: 16384
   FrrBfdEnabled: true
   FrrBgpEnabled: true
@@ -150,6 +370,7 @@ parameter_defaults:
       debug bgp neighbor-events
       debug bgp updates
       debug bgp update-groups
+
   ComputeRack0ExtraGroupVars:
     tripleo_frr_bgp_neighbor_password: f00barZ
     tripleo_frr_bfd_detect_multiplier: 10
@@ -201,83 +422,11 @@ parameter_defaults:
 
   BgpvpnServiceProvider: 'BGPVPN:OVN:networking_bgpvpn.neutron.services.service_drivers.ovn.ovn.OvnBGPVPNDriver:default'
 
-  ControllerRack0SchedulerHints:
-    'capabilities:node': 'osp-r0-controller-%index%'
-  ControllerRack1SchedulerHints:
-    'capabilities:node': 'osp-r1-controller-%index%'
-  ControllerRack2SchedulerHints:
-    'capabilities:node': 'osp-r2-controller-%index%'
-  ComputeRack0SchedulerHints:
-    'capabilities:node': 'osp-r0-compute-%index%'
-  ComputeRack1SchedulerHints:
-    'capabilities:node': 'osp-r1-compute-%index%'
-  ComputeRack2SchedulerHints:
-    'capabilities:node': 'osp-r2-compute-%index%'
-
-  ExtraConfig:
-    neutron::config::plugin_ml2_config:
-      OVN/ovsdb_log_level:
-        value: DEBUG
-
   # Allow ssh access from all networks
   SshFirewallAllowAll: true
   MemcachedIpSubnet: '172.16.0.0/12'
 
   BarbicanSimpleCryptoGlobalDefault: true
-
-
-  ### network-environment content
-  ControllerRack0IPs:
-    left_network:
-    - 100.64.0.30
-    right_network:
-    - 100.65.0.30
-    main_network:
-    - 99.99.0.29/24
-  ControllerRack1IPs:
-    left_network:
-    - 100.64.1.30
-    right_network:
-    - 100.65.1.30
-    main_network:
-    - 99.99.1.30/24
-  ControllerRack2IPs:
-    left_network:
-    - 100.64.2.30
-    right_network:
-    - 100.65.2.30
-    main_network:
-    - 99.99.2.29/24
-  ComputeRack0IPs:
-    left_network:
-    - 100.64.0.2
-    - 100.64.0.6
-    right_network:
-    - 100.65.0.2
-    - 100.65.0.6
-    main_network:
-    - 99.99.0.2/24
-    - 99.99.0.6/24
-  ComputeRack1IPs:
-    left_network:
-    - 100.64.1.2
-    - 100.64.1.6
-    right_network:
-    - 100.65.1.2
-    - 100.65.1.6
-    main_network:
-    - 99.99.1.2/24
-    - 99.99.1.6/24
-  ComputeRack2IPs:
-    left_network:
-    - 100.64.2.2
-    - 100.64.2.6
-    right_network:
-    - 100.65.2.2
-    - 100.65.2.6
-    main_network:
-    - 99.99.2.2/24
-    - 99.99.2.6/24
 
 
   # this overrides the default value openstacklocal
@@ -310,6 +459,7 @@ parameter_defaults:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
+
   ControllerRack1Parameters:
     NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
     ControlPlaneSubnet: main_network_r1
@@ -366,9 +516,7 @@ parameter_defaults:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
-  #NeutronEnableDVR: 'false'
-  #NeutronNetworkType: 'geneve'
-  #NeutronTunnelTypes: 'geneve'
+
   NeutronExternalNetworkBridge: ''
   NeutronNetworkVLANRanges: 'provider2:1:1000'
   DnsServers: ['192.168.122.1', '192.168.125.1']
@@ -448,4 +596,3 @@ parameter_defaults:
     InternalApiNetwork: main_network
 
     PublicNetwork: external
-    #PublicNetwork: ctlplane
