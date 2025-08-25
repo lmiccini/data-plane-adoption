@@ -64,12 +64,24 @@ resource_registry:
   #OS::TripleO::NodeExtraConfigPost: /home/stack/tht/extraconfigpost_template.yaml
 
 parameter_defaults:
+  OvercloudControllerRack0Flavor: control0
+  OvercloudControllerRack1Flavor: control1
+  OvercloudControllerRack2Flavor: control2
   ControllerRack0Count: 1
   ControllerRack1Count: 1
   ControllerRack2Count: 1
+  OvercloudComputeRack0Flavor: compute0
+  OvercloudComputeRack1Flavor: compute1
+  OvercloudComputeRack2Flavor: compute2
   ComputeRack0Count: 2
   ComputeRack1Count: 2
   ComputeRack2Count: 2
+  ControllerRack0ControlPlaneSubnet: r0
+  ControllerRack1ControlPlaneSubnet: r1
+  ControllerRack2ControlPlaneSubnet: r2
+  ComputeRack0ControlPlaneSubnet: r0
+  ComputeRack1ControlPlaneSubnet: r1
+  ComputeRack2ControlPlaneSubnet: r2
 
   # extraconfigpre
   ContainerHealthcheckDisabled: true
