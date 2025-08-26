@@ -56,6 +56,9 @@ resource_registry:
 
 
 parameter_defaults:
+
+  NetworkConfigWithAnsible: false
+
   ControllerRack0Count: 1
   ControllerRack0HostnameFormat: controllerrack0-%index%
   ControllerRack1Count: 1
