@@ -316,7 +316,7 @@ parameter_defaults:
   FrrBgpEnabled: true
   FrrBgpIpv4AllowASIn: true
   FrrBgpIpv6AllowASIn: true
-  FrrBgpUplinks: ['nic2', 'nic3']
+  FrrBgpUplinks: ['nic3', 'nic4']
   FrrBgpUplinksScope: internal
   FrrLogLevel: debugging
   FrrBgpIpv4SrcNetwork: main_network
