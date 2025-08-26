@@ -590,12 +590,12 @@ parameter_defaults:
     HaproxyNetwork: main_network
 
     # Not sure as to why yet, but without these we fail rendering the hosts entries
+    ControllerRack0HostnameResolveNetwork: main_network
     ControllerRack1HostnameResolveNetwork: main_network
     ControllerRack2HostnameResolveNetwork: main_network
-    ControllerRack3HostnameResolveNetwork: main_network
+    ComputeRack0HostnameResolveNetwork: main_network
     ComputeRack1HostnameResolveNetwork: main_network
     ComputeRack2HostnameResolveNetwork: main_network
-    ComputeRack3HostnameResolveNetwork: main_network
     InternalApiNetwork: main_network
 
     PublicNetwork: external
