@@ -456,9 +456,9 @@ parameter_defaults:
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
     FrrOvnBgpAgentExposeTenantNetworks: True
     ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+      net.ipv6.conf.eth2.accept_ra_defrtr:
         value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+      net.ipv6.conf.eth3.accept_ra_defrtr:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
@@ -470,9 +470,9 @@ parameter_defaults:
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
     FrrOvnBgpAgentExposeTenantNetworks: True
     ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+      net.ipv6.conf.eth2.accept_ra_defrtr:
         value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+      net.ipv6.conf.eth3.accept_ra_defrtr:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
@@ -483,9 +483,9 @@ parameter_defaults:
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
     FrrOvnBgpAgentExposeTenantNetworks: True
     ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+      net.ipv6.conf.eth2.accept_ra_defrtr:
         value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+      net.ipv6.conf.eth3.accept_ra_defrtr:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
@@ -493,9 +493,9 @@ parameter_defaults:
     NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
     ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+      net.ipv6.conf.eth2.accept_ra_defrtr:
         value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+      net.ipv6.conf.eth3.accept_ra_defrtr:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
@@ -503,9 +503,9 @@ parameter_defaults:
     NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
     ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+      net.ipv6.conf.eth2.accept_ra_defrtr:
         value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+      net.ipv6.conf.eth3.accept_ra_defrtr:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
@@ -513,9 +513,9 @@ parameter_defaults:
     NeutronBridgeMappings: ["provider1:br-ex", "provider2:br-vlan"]
     FrrOvnBgpAgentDriver: 'ovn_bgp_driver'
     ExtraSysctlSettings:
-      net.ipv6.conf.enp2s0.accept_ra_defrtr:
+      net.ipv6.conf.eth2.accept_ra_defrtr:
         value: 0
-      net.ipv6.conf.enp3s0.accept_ra_defrtr:
+      net.ipv6.conf.eth3.accept_ra_defrtr:
         value: 0
       net.ipv6.conf.br-ex.router_solicitations:
         value: 0
