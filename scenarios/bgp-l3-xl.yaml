@@ -19,6 +19,9 @@ undercloud:
     - section: DEFAULT
       option: generate_service_certificate
       value: false
+    - section: DEFAULT
+      option: enable_frr
+      value: true
   undercloud_parameters_override: "bgp-l3-xl/hieradata_overrides_undercloud.yaml"
   undercloud_parameters_defaults: "bgp-l3-xl/undercloud_parameter_defaults.yaml"
   ctlplane_vip: 192.168.125.98
