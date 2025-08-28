@@ -22,9 +22,82 @@ undercloud:
     - section: DEFAULT
       option: enable_frr
       value: true
+    - section: DEFAULT
+      option: enable_routed_networks
+      value: true
+    - section: DEFAULT
+      option: local_ip
+      value: 192.168.122.95/24
+    - section: DEFAULT
+      option: undercloud_public_host
+      value: "192.168.122.97"
+    - section: DEFAULT
+      option: undercloud_admin_host
+      value: "192.168.122.98"
+    - section: DEFAULT
+      option: subnets
+      value: r0,r1,r2
+    - section: DEFAULT
+      option: local_subnet
+      value: r0
+    - section: r0
+      option: cidr
+      value: 192.168.122.0/24
+    - section: r0
+      option: dhcp_start
+      value: 192.168.122.150
+    - section: r0
+      option: dhcp_end
+      value: 192.168.122.170
+    - section: r0
+      option: inspection_iprange
+      value: 192.168.122.171,192.168.122.185
+    - section: r0
+      option: gateway
+      value: 192.168.122.1
+    - section: r0
+      option: masquerade
+      value: False
+    - section: r1
+      option: cidr
+      value: 192.168.123.0/24
+    - section: r1
+      option: dhcp_start
+      value: 192.168.123.150
+    - section: r1
+      option: dhcp_end
+      value: 192.168.123.170
+    - section: r1
+      option: inspection_iprange
+      value: 192.168.123.171,192.168.123.185
+    - section: r1
+      option: gateway
+      value: 192.168.123.1
+    - section: r1
+      option: masquerade
+      value: False
+    - section: r2
+      option: cidr
+      value: 192.168.124.0/24
+    - section: r2
+      option: dhcp_start
+      value: 192.168.124.150
+    - section: r2
+      option: dhcp_end
+      value: 192.168.124.170
+    - section: r2
+      option: inspection_iprange
+      value: 192.168.124.171,192.168.124.185
+    - section: r2
+      option: gateway
+      value: 192.168.124.1
+    - section: r2
+      option: masquerade
+      value: False
   undercloud_parameters_override: "bgp-l3-xl/hieradata_overrides_undercloud.yaml"
   undercloud_parameters_defaults: "bgp-l3-xl/undercloud_parameter_defaults.yaml"
-  ctlplane_vip: 192.168.125.98
+  #ctlplane_vip: 192.168.125.98
+  ctlplane_vip: 192.168.122.98
 cloud_domain: "example.com"
 hostname_groups_map:
   # map ansible groups in the inventory to role hostname format for

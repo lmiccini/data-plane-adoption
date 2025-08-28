@@ -87,38 +87,38 @@ parameter_defaults:
   DeployedServerPortMap:
     osp-r0-compute-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.122.100
+      - ip_address: 192.168.125.100
     osp-r0-compute-1-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.122.101
+      - ip_address: 192.168.125.101
     osp-r1-compute-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.123.100
+      - ip_address: 192.168.125.110
     osp-r1-compute-1-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.123.101
+      - ip_address: 192.168.125.111
     osp-r2-compute-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.124.100
+      - ip_address: 192.168.125.120
     osp-r2-compute-1-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.124.101
+      - ip_address: 192.168.125.121
     osp-r0-controller-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.122.140
+      - ip_address: 192.168.125.140
     osp-r1-controller-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.123.140
+      - ip_address: 192.168.125.145
     osp-r2-controller-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.124.140
+      - ip_address: 192.168.125.148
 
   NodePortMap:
     osp-r0-compute-0:
       ctlplane:
-        ip_address: 192.168.122.100
-        ip_address_uri: 192.168.122.100
-        ip_subnet: 192.168.122.0/24
+        ip_address: 192.168.125.100
+        ip_address_uri: 192.168.125.100
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.0.2
         ip_address_uri: 100.64.0.2
@@ -137,9 +137,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r0-compute-1:
       ctlplane:
-        ip_address: 192.168.122.101
-        ip_address_uri: 192.168.122.101
-        ip_subnet: 192.168.122.0/24
+        ip_address: 192.168.125.101
+        ip_address_uri: 192.168.125.101
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.0.6
         ip_address_uri: 100.64.0.6
@@ -158,9 +158,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r1-compute-0:
       ctlplane:
-        ip_address: 192.168.123.105
-        ip_address_uri: 192.168.123.100
-        ip_subnet: 192.168.123.0/24
+        ip_address: 192.168.125.110
+        ip_address_uri: 192.168.125.110
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.1.2
         ip_address_uri: 100.64.1.2
@@ -179,9 +179,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r1-compute-1:
       ctlplane:
-        ip_address: 192.168.123.106
-        ip_address_uri: 192.168.123.101
-        ip_subnet: 192.168.123.0/24
+        ip_address: 192.168.125.111
+        ip_address_uri: 192.168.125.111
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.1.6
         ip_address_uri: 100.64.1.6
@@ -200,9 +200,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r2-compute-0:
       ctlplane:
-        ip_address: 192.168.124.110
-        ip_address_uri: 192.168.124.100
-        ip_subnet: 192.168.124.0/24
+        ip_address: 192.168.125.120
+        ip_address_uri: 192.168.125.120
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.2.2
         ip_address_uri: 100.64.2.2
@@ -221,9 +221,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r2-compute-1:
       ctlplane:
-        ip_address: 192.168.124.111
-        ip_address_uri: 192.168.124.101
-        ip_subnet: 192.168.124.0/24
+        ip_address: 192.168.125.121
+        ip_address_uri: 192.168.125.121
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.2.6
         ip_address_uri: 100.64.2.6
@@ -242,9 +242,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r0-controller-0:
       ctlplane:
-        ip_address: 192.168.122.140
-        ip_address_uri: 192.168.122.140
-        ip_subnet: 192.168.122.0/24
+        ip_address: 192.168.125.140
+        ip_address_uri: 192.168.125.140
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.0.30
         ip_address_uri: 100.64.0.30
@@ -263,9 +263,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r1-controller-0:
       ctlplane:
-        ip_address: 192.168.123.142
-        ip_address_uri: 192.168.123.140
-        ip_subnet: 192.168.123.0/24
+        ip_address: 192.168.125.145
+        ip_address_uri: 192.168.125.145
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.1.30
         ip_address_uri: 100.64.1.30
@@ -284,9 +284,9 @@ parameter_defaults:
         ip_subnet: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0/124
     osp-r2-controller-0:
       ctlplane:
-        ip_address: 192.168.124.144
-        ip_address_uri: 192.168.124.140
-        ip_subnet: 192.168.124.0/24
+        ip_address: 192.168.125.148
+        ip_address_uri: 192.168.125.148
+        ip_subnet: 192.168.125.0/24
       left_network:
         ip_address: 100.64.2.30
         ip_address_uri: 100.64.2.30
