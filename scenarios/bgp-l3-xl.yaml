@@ -82,7 +82,8 @@ stacks:
         extra_vars:
           stack_index: 0
           num_racks: 3
-          cifmw_repo_setup_rhos_release_rpm: https://url.corp.redhat.com/6501b8d
-          edpm_nodes_per_rack: 4
+          edpm_nodes_per_rack: 5
           ocp_nodes_per_rack: 4
+          router_bool: true
+          router_uplink_ip: 100.64.10.1
 
