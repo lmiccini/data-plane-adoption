@@ -148,6 +148,16 @@ stacks:
       - osp-r0-controllers
       - osp-r1-controllers
       - osp-r2-controllers
+    pre_uc_run:
+      - name: Inject defroute
+        type: playbook
+        source: "bgp/gw.yaml"
+    post_uc_run:
+      - name: Remove defroute
+        type: playbook
+        source: "bgp/gw.yaml"
+        extra_vars:
+          gw_remove: true
     pre_oc_run:
       - name: Deploy BGP fabric
         type: playbook
