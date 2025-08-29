@@ -93,25 +93,25 @@ parameter_defaults:
       - ip_address: 192.168.122.101
     osp-r1-compute-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.123.100
+      - ip_address: 192.168.123.105
     osp-r1-compute-1-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.123.101
+      - ip_address: 192.168.123.106
     osp-r2-compute-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.124.100
+      - ip_address: 192.168.124.110
     osp-r2-compute-1-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.124.101
+      - ip_address: 192.168.124.111
     osp-r0-controller-0-ctlplane:
       fixed_ips:
       - ip_address: 192.168.122.140
     osp-r1-controller-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.123.140
+      - ip_address: 192.168.123.142
     osp-r2-controller-0-ctlplane:
       fixed_ips:
-      - ip_address: 192.168.124.140
+      - ip_address: 192.168.124.144
 
   NodePortMap:
     osp-r0-compute-0:
