@@ -105,10 +105,10 @@ undercloud:
       value: 192.168.188.170
     - section: r3
       option: inspection_iprange
-      value: 192.168.124.188,192.168.188.185
+      value: 192.168.188.171,192.168.188.185
     - section: r3
       option: gateway
-      value: 192.168.128.1
+      value: 192.168.188.1
     - section: r3
       option: masquerade
       value: False
