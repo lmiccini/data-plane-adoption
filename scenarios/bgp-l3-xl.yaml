@@ -36,7 +36,7 @@ undercloud:
       value: "192.168.122.98"
     - section: DEFAULT
       option: subnets
-      value: r0,r1,r2
+      value: r0,r1,r2,r3
     - section: DEFAULT
       option: local_subnet
       value: r0
@@ -92,6 +92,24 @@ undercloud:
       option: gateway
       value: 192.168.124.1
     - section: r2
+      option: masquerade
+      value: False
+    - section: r3
+      option: cidr
+      value: 192.168.188.0/24
+    - section: r3
+      option: dhcp_start
+      value: 192.168.188.150
+    - section: r3
+      option: dhcp_end
+      value: 192.168.188.170
+    - section: r3
+      option: inspection_iprange
+      value: 192.168.124.188,192.168.188.185
+    - section: r3
+      option: gateway
+      value: 192.168.128.1
+    - section: r3
       option: masquerade
       value: False
   undercloud_parameters_override: "bgp-l3-xl/hieradata_overrides_undercloud.yaml"
