@@ -119,7 +119,7 @@ ${BASH_ALIASES[openstack]} security group rule list --protocol tcp --ingress -f 
 export FIP=192.168.133.20
 # check connectivity via FIP
 TRIES=0
-until ping -D -c1 -W2 "$FIP"; do
+until ssh 192.168.122.95 ping -D -c1 -W2 "$FIP"; do
     ((TRIES++)) || true
     if [ "$TRIES" -gt 30 ]; then
         echo "Ping timeout"
