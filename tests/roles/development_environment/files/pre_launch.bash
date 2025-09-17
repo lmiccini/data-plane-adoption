@@ -121,7 +121,7 @@ export FIP=192.168.133.20
 TRIES=0
 until ping -D -c1 -W2 "$FIP"; do
     ((TRIES++)) || true
-    if [ "$TRIES" -gt 20 ]; then
+    if [ "$TRIES" -gt 30 ]; then
         echo "Ping timeout"
         exit 1
     fi
