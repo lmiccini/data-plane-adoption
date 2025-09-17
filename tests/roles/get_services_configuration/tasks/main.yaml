@@ -4,6 +4,20 @@
     tasks_from: env_vars_src_ospdo.yaml
   when: ospdo_src| bool
 
+- name: create bgpconfiguration
+  when: bgp
+  ansible.builtin.shell: |
+    cat << EOF > bgp.yaml
+    apiVersion: network.openstack.org/v1beta1
+    kind: BGPConfiguration
+    metadata:
+      name: bgpconfiguration
+      namespace: openstack
+    spec: {}
+    EOF
+
+    oc apply -f bgp.yaml
+
 - name: create mariadb-client container
   no_log: "{{ use_no_log }}"
   ansible.builtin.shell: |
