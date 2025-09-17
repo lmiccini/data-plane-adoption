@@ -79,9 +79,9 @@ fi
 # Create networks
 ${BASH_ALIASES[openstack]} network show private || ${BASH_ALIASES[openstack]} network create private --share
 ${BASH_ALIASES[openstack]} subnet show priv_sub || ${BASH_ALIASES[openstack]} subnet create priv_sub --subnet-range 192.168.0.0/24 --network private
-${BASH_ALIASES[openstack]} network show public || ${BASH_ALIASES[openstack]} network create public --external --provider-network-type flat --provider-physical-network datacentre
+${BASH_ALIASES[openstack]} network show public || ${BASH_ALIASES[openstack]} network create public --external --provider-network-type flat --provider-physical-network provider1
 ${BASH_ALIASES[openstack]} subnet show public_subnet || \
-    ${BASH_ALIASES[openstack]} subnet create public_subnet --subnet-range 192.168.122.0/24 --allocation-pool start=192.168.122.171,end=192.168.122.250 --gateway 192.168.122.1 --dhcp --network public
+    ${BASH_ALIASES[openstack]} subnet create public_subnet --subnet-range 192.168.133.0/24 --allocation-pool start=192.168.133.171,end=192.168.133.250 --gateway 192.168.133.1 --dhcp --network public
 ${BASH_ALIASES[openstack]} router show priv_router || {
     ${BASH_ALIASES[openstack]} router create priv_router
     ${BASH_ALIASES[openstack]} router add subnet priv_router priv_sub
@@ -89,24 +89,24 @@ ${BASH_ALIASES[openstack]} router show priv_router || {
 }
 
 # Create a floating IP
-${BASH_ALIASES[openstack]} floating ip show 192.168.122.20 || \
-    ${BASH_ALIASES[openstack]} floating ip create public --floating-ip-address 192.168.122.20
+${BASH_ALIASES[openstack]} floating ip show 192.168.133.20 || \
+    ${BASH_ALIASES[openstack]} floating ip create public --floating-ip-address 192.168.133.20
 
 # Create a test instance
 ${BASH_ALIASES[openstack]} server show test || {
     ${BASH_ALIASES[openstack]} server create --flavor m1.small --image cirros --nic net-id=private test --wait
-    ${BASH_ALIASES[openstack]} server add floating ip test 192.168.122.20
+    ${BASH_ALIASES[openstack]} server add floating ip test 192.168.133.20
 }
 
 if [ "$PING_TEST_VM" = "true" ]; then
     # Create a floating IP
-    ${BASH_ALIASES[openstack]} floating ip show 192.168.122.21 || \
-        ${BASH_ALIASES[openstack]} floating ip create public --floating-ip-address 192.168.122.21
+    ${BASH_ALIASES[openstack]} floating ip show 192.168.133.21 || \
+        ${BASH_ALIASES[openstack]} floating ip create public --floating-ip-address 192.168.133.21
 
     # Create a test-ping instance
     ${BASH_ALIASES[openstack]} server show test-ping || {
       ${BASH_ALIASES[openstack]} server create --flavor m1.small --image cirros --nic net-id=private test-ping --wait
-      ${BASH_ALIASES[openstack]} server add floating ip test-ping 192.168.122.21
+      ${BASH_ALIASES[openstack]} server add floating ip test-ping 192.168.133.21
     }
 fi
 
@@ -116,7 +116,7 @@ ${BASH_ALIASES[openstack]} security group rule list --protocol icmp --ingress -f
 ${BASH_ALIASES[openstack]} security group rule list --protocol tcp --ingress -f json | grep '"Port Range": "22:22"' || \
     ${BASH_ALIASES[openstack]} security group rule create --protocol tcp --ingress --dst-port 22 $(${BASH_ALIASES[openstack]} security group list --project admin -f value -c ID)
 
-export FIP=192.168.122.20
+export FIP=192.168.133.20
 # check connectivity via FIP
 TRIES=0
 until ping -D -c1 -W2 "$FIP"; do

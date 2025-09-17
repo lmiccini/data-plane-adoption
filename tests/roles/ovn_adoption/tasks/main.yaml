@@ -94,7 +94,7 @@
       name: ovn-copy-data
       annotations:
         openshift.io/scc: anyuid
-        k8s.v1.cni.cncf.io/networks: {{ copy_pods_custom_networks | default('internalapi') }}
+        k8s.v1.cni.cncf.io/networks: '[{"name":"internalapi","namespace":"openstack"}]'
       labels:
         app: adoption
     spec:
@@ -165,6 +165,25 @@
     $CONTROLLER2_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.1.0/24 tcp dport 6642 ct state new counter accept
     $CONTROLLER3_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.1.0/24 tcp dport 6641 ct state new counter accept
     $CONTROLLER3_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.1.0/24 tcp dport 6642 ct state new counter accept
+
+- name: Add nftables rule to allow podified internalapi trafic to controllers BGP
+  when: bgp
+  ansible.builtin.shell: |
+    {{ shell_header }}
+    {{ oc_header }}
+    {{ ovn_copy_shell_vars }}
+
+    $CONTROLLER1_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.0.0/24 tcp dport 6641 ct state new counter accept
+    $CONTROLLER1_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.0.0/24 tcp dport 6642 ct state new counter accept
+    $CONTROLLER2_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.0.0/24 tcp dport 6641 ct state new counter accept
+    $CONTROLLER2_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.0.0/24 tcp dport 6642 ct state new counter accept
+    $CONTROLLER3_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.0.0/24 tcp dport 6641 ct state new counter accept
+    $CONTROLLER3_SSH sudo nft add rule inet filter INPUT ip saddr 172.17.0.0/24 tcp dport 6642 ct state new counter accept
+
+- name: wait bgp
+  when: bgp
+  ansible.builtin.pause:
+    seconds: 60
 
 - name: dump OVN databases using tcp connection
   no_log: "{{ use_no_log }}"

@@ -155,6 +155,7 @@ stacks:
       - "/usr/share/openstack-tripleo-heat-templates/environments/services/barbican.yaml"
       - "/usr/share/openstack-tripleo-heat-templates/environments/barbican-backend-simple-crypto.yaml"
       - "/usr/share/openstack-tripleo-heat-templates/environments/services/frr.yaml"
+      - "/usr/share/openstack-tripleo-heat-templates/environments/services/ovn-bgp-agent.yaml"
     network_data_file: "bgp-l3-xl/network_data.yaml.j2"
     vips_data_file: "bgp-l3-xl/vips_data.yaml"
     roles_file: "bgp-l3-xl/roles.yaml"

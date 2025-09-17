@@ -130,7 +130,7 @@ mariadb_copy_shell_vars_src: |-
   done
 
   RUN_OVERRIDES=' '
-  MARIADB_CLIENT_ANNOTATIONS={{ deploy_ctlplane_ospdo | default(false) | bool | ternary("-n $NAMESPACE", "--annotations=k8s.v1.cni.cncf.io/networks=internalapi") }}
+  MARIADB_CLIENT_ANNOTATIONS={{ deploy_ctlplane_ospdo | default(false) | bool | ternary('-n $NAMESPACE', '--annotations=k8s.v1.cni.cncf.io/networks=[{\"name\":\"internalapi\",\"namespace\":\"openstack\"}]') }}
   MARIADB_RUN_OVERRIDES={{ deploy_ctlplane_ospdo | default(false) | bool | ternary("--overrides=${RUN_OVERRIDES} $MARIADB_CLIENT_ANNOTATIONS {{ mysql_client_override }}", "$MARIADB_CLIENT_ANNOTATIONS") }}
 
   OSPDO_MARIADB_CLIENT_ANNOTATIONS='[{"name": "internalapi-static","ips": ["172.17.0.99/24"]}]'
