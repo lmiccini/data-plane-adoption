@@ -18,11 +18,14 @@
 
     oc apply -f bgp.yaml
 
+
 - name: create mariadb-client container
   no_log: "{{ use_no_log }}"
   ansible.builtin.shell: |
     {{ oc_header }}
     {{ mariadb_copy_shell_vars_src }}
+    # delete existing mariadb-client pods
+    oc delete pod mariadb-client || true
     oc run mariadb-client ${MARIADB_RUN_OVERRIDES} -q --image ${MARIADB_IMAGE} --restart=Never -- /usr/bin/sleep infinity
 
 # wait until pod ip is advertised via bgp and can reach the galera vip
@@ -51,7 +54,6 @@
     for CELL in $(echo $CELLS); do
         PULL_OPENSTACK_CONFIGURATION_DATABASES[$CELL]=$(oc rsh mariadb-client \
             mysql -rsh ${SOURCE_MARIADB_IP[$CELL]} -uroot -p${SOURCE_DB_ROOT_PASSWORD[$CELL]} -e 'SHOW databases;')
-        echo $PULL_OPENSTACK_CONFIGURATION_DATABASES
     done
 
 - name: run mysqlcheck on the original DB to look for things that are not OK
