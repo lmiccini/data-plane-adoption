@@ -411,6 +411,26 @@
           playbook: osp.edpm.pre_adoption_validation
         EOF
 
+    # MORTACCI
+    - name: inject bgp netconfig and osdpns
+      when: bgp
+      no_log: "{{ use_no_log }}"
+      ansible.builtin.shell: |
+        mkdir -p /home/zuul/ns
+        cd /home/zuul/ns
+        curl -O 10.6.0.133/bgp-adopt/ns-computes.yaml
+        curl -O 10.6.0.133/bgp-adopt/ns-networkers.yaml
+        curl -O 10.6.0.133/bgp-adopt/netconfig.yaml
+        oc delete osdpns openstack-cell1 ||true
+        oc delete osdpns openstack-networker ||true
+        sleep 5
+        oc delete netconfig netconfig ||true
+        sleep 5
+        oc apply -f netconfig.yaml
+        oc apply -f ns-computes.yaml
+        oc apply -f ns-networkers.yaml
+
+
     - name: create a OpenStackDataPlaneDeployment CR that runs only the validation
       no_log: "{{ use_no_log }}"
       ansible.builtin.shell: |
